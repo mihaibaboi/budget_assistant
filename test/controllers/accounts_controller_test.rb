@@ -1,8 +1,13 @@
 require 'test_helper'
 
 class AccountsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  
   setup do
-    @account = accounts(:one)
+    @user = create(:user)
+    sign_in @user
+    
+    @account = create(:account, user: @user)
   end
 
   test "should get index" do
@@ -18,7 +23,7 @@ class AccountsControllerTest < ActionController::TestCase
 
   test "should create account" do
     assert_difference('Account.count') do
-      post :create, account: { description: @account.description, name: @account.name, user_id: @account.user_id }
+      post :create, account: { description: @account.description, name: @account.name }
     end
 
     assert_redirected_to account_path(assigns(:account))
@@ -35,7 +40,7 @@ class AccountsControllerTest < ActionController::TestCase
   end
 
   test "should update account" do
-    patch :update, id: @account, account: { description: @account.description, name: @account.name, user_id: @account.user_id }
+    patch :update, id: @account, account: { name: 'Testing update from model', description: 'Testing the description update from model' }
     assert_redirected_to account_path(assigns(:account))
   end
 
