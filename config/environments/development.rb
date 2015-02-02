@@ -39,7 +39,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.default_url_options = { :host => 'http://robust-ghost-30-146831.euw1-2.nitrousbox.com' }
 
   config.action_mailer.smtp_settings = {
     address: 'smtp.mandrillapp.com',
